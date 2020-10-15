@@ -1,0 +1,27 @@
+---
+- name: Playbook Demo
+  hosts: web
+  tasks:
+  - name: ping the hosts
+    ping:
+
+  - name: ensure Apache is installed
+    yum:
+      name: httpd
+      state: present
+    become: true
+
+  - name: ensure Apache is running
+    service:
+      name: httpd
+      state: started
+      enabled: true
+    become: true
+    
+  - name: get list of all services on box
+    service_facts:
+
+  - name: read the redhat-release file
+    shell: cat /etc/redhat-release
+    check_mode: no
+    changed_when: false
