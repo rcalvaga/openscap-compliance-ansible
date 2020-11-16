@@ -1,6 +1,2 @@
 ---
-- src: dev-sec.ssh-hardening
 - src: geerlingguy.swap
-- src: linux-system-roles.firewall
-- src: linux-system-roles.timesync
-- src: redhatofficial.rhel8_pci_dss
