@@ -24,7 +24,7 @@
         path: "{{ssg_schema}}"
 
     - name: create HTML report
-      command: "oscap xccdf eval --fetch-remote-resources --profile {{ssg_profile | default ('xccdf_org.ssgproject.content_profile_ospp')}} --results report.xml --report index.html {{ssg_schema}}"
+      command: "oscap xccdf eval --fetch-remote-resources --profile {{ssg_profile | default ('xccdf_org.ssgproject.content_profile_pci-dss')}} --results report.xml --report index.html {{ssg_schema}}"
       register: command_result
       failed_when: "'Error' in command_result.stderr"
 
@@ -46,4 +46,4 @@
 
     - name: DISPLAY LINK TO INVENTORY REPORT
       debug:
-        msg: "{{ inventory_hostname }} has completed running Openscap Profile {{ssg_profile|default ('xccdf_org.ssgproject.content_profile_ospp')}} and can be viewed at http://{{ansible_host}}/openscap"
+        msg: "{{ inventory_hostname }} has completed running Openscap Profile {{ssg_profile|default ('xccdf_org.ssgproject.content_profile_pci-dss')}} and can be viewed at http://{{ansible_host}}/openscap"
