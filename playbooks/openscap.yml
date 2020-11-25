@@ -6,8 +6,7 @@
     swap_file_size_mb: '2048'
     file_path: "/var/www/html/openscap/"
     ssg_schema: "/usr/share/xml/scap/ssg/content/ssg-rhel8-ds.xml"
-    ssg_profile: "xccdf_org.ssgproject.content_profile_pci-dss"
-    
+   
   tasks:
     - include_role:
         name: geerlingguy.swap
@@ -25,7 +24,8 @@
         path: "{{ssg_schema}}"
 
     - name: create HTML report
-      command: "oscap xccdf eval --fetch-remote-resources --profile {{ssg_profile}} --results report.xml --report index.html {{ssg_schema}}"
+      command: "oscap xccdf eval --fetch-remote-resources --profile {{ssg_profile | default ('xccdf_org.ssgproject.content_profile_ospp
+'}} --results report.xml --report index.html {{ssg_schema}}"
       register: command_result
       failed_when: "'Error' in command_result.stderr"
 
@@ -47,4 +47,5 @@
 
     - name: DISPLAY LINK TO INVENTORY REPORT
       debug:
-        msg: "Please go to http://{{ansible_host}}/openscap"
+        msg: "{{ inventory_hostname }} has completed running Openscap Profile {{ssg_profile|default ('xccdf_org.ssgproject.content_profile_ospp
+'}} and can be viewed at http://{{ansible_host}}/openscap"
