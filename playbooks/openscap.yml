@@ -1,6 +1,6 @@
 ---
 - name: Install and execute the OpenSCAP scan
-  hosts: web
+  hosts: all
   become: true
   vars:
     swap_file_size_mb: '2048'
