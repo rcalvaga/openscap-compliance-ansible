@@ -1,6 +1,6 @@
 ---
 - name: Playbook Demo
-  hosts: web
+  hosts: all
   tasks:
   - name: ping the hosts
     ping:
