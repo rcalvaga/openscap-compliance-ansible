@@ -1,6 +1,6 @@
 ---
 - name: install and configure AIDE
-  hosts: web
+  hosts: all
   become: true
   tasks:
   - name: Ensure AIDE is installed
