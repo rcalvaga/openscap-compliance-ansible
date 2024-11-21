@@ -1,6 +1,20 @@
 ---
-- name: install and configure AIDE
-  hosts: all
+- name: Register VM_IP Artifact
+  hosts: localhost
+  gather_facts: False
+  connection: local
+  
+  tasks:
+  - name: Save host data within a Group
+    add_host:
+      hostname: "{{ vm_ip }}"
+      groupname: hardening_servers
+
+  - name: Wait for SSH to come up
+    wait_for: host={{ vm_ip }} port=22 delay=10 timeout=60
+    
+- name: install and configure AIDE as IDS
+  hosts: hardening_servers
   become: true
   tasks:
   - name: Ensure AIDE is installed
