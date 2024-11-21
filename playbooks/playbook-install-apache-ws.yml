@@ -1,6 +1,6 @@
 ---
-- name: Playbook Demo
-  hosts: all
+- name: Playbook Install Apache as Webserver
+  hosts: "{{ vm_ip }}"
   tasks:
   - name: ping the hosts
     ping:
