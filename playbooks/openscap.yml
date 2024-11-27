@@ -19,9 +19,9 @@
     swap_file_size_mb: '2048'
     file_path: "/var/www/html/openscap/" 
   tasks:
-    - include_role:
-        name: geerlingguy.swap
-      when: ansible_memory_mb.real.total < 2048 or ansible_memory_mb.swap.total < 2047
+ #   - include_role:
+ #       name: geerlingguy.swap
+ #     when: ansible_memory_mb.real.total < 2048 or ansible_memory_mb.swap.total < 2047
 
     - name: make sure openscap-scanner and scap-security guide are installed
       yum:
